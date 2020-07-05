@@ -8,14 +8,17 @@ export default function GameBoard() {
     {
       id: 1,
       description: "the easiest level down here",
+      unlocked: true,
     },
     {
       id: 2,
       description: "the easiest level down here",
+      unlocked: true,
     },
     {
       id: 3,
       description: "the easiest level down here",
+      unlocked: false,
     },
   ];
   return (
@@ -25,7 +28,12 @@ export default function GameBoard() {
       <Row>
         {levels.map((i) => (
           <Col xs="12" sm="6" lg="3" style={{ marginTop: "2%" }}>
-            <LevelCard level={i.id} description={i.description} />
+            <LevelCard
+              level={i.id}
+              description={i.description}
+              id={i.id}
+              isUnlock={!i.unlocked}
+            />
           </Col>
         ))}
       </Row>
