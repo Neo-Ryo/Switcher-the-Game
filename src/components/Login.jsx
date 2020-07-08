@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Container, Button } from "reactstrap";
 import style from "../css/Form.module.css";
+import axios from "axios";
 
 const Login = () => {
+  const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+
+  // }, []);
+
+  const getPseudos = async () => {
+    try {
+      const res = await axios.post("marequetteAPI");
+      setToken(res.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  //useForm const below
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = (values) => console.log(values);
 
