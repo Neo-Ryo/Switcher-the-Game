@@ -1,36 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Container, Button } from "reactstrap";
+import { useDispatch } from "react-redux";
+import { Container, Button, Spinner } from "reactstrap";
 import style from "../css/Form.module.css";
-import axios from "axios";
+import { login } from "./store/actionCreators";
 
 const Login = () => {
-  const [token, setToken] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [IsLoading, setIsLoading] = useState(false);
+  const [togglePassword, setTogglePassword] = useState(true);
+  //useForm const below
+  const { handleSubmit, register, errors } = useForm();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-
-  // }, []);
-
-  const getPseudos = async () => {
+  const submitLogs = async (data) => {
     try {
-      const res = await axios.post("marequetteAPI");
-      setToken(res.data);
+      setIsLoading(true);
+      await dispatch(login({ ...data }));
     } catch (error) {
-      console.log(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  //useForm const below
-  const { handleSubmit, register, errors } = useForm();
-  const onSubmit = (values) => console.log(values);
-
   return (
     <Container className={style.wrapper} fluid>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Log In</h1>
+      <form onSubmit={handleSubmit(submitLogs)}>
         <label for="pseudo" className={style.label}>
           Pseudo
         </label>
@@ -40,7 +35,7 @@ const Login = () => {
             name="pseudo"
             placeholder="enter your pseudo"
             ref={register({
-              validate: (value) => value !== "admin" || "Nice try!",
+              required: "Required",
             })}
           />
           {errors.pseudo && errors.pseudo.message}
@@ -52,15 +47,26 @@ const Login = () => {
           <input
             className={style.input}
             name="pseudo"
-            placeholder="enter your name"
+            placeholder="enter your secret superhero name"
+            type={togglePassword ? "password" : "text"}
             ref={register({
-              validate: (value) => value !== "admin" || "Nice try!",
+              required: "Required",
             })}
           />
+          <Button
+            onClick={() => {
+              setTogglePassword(!togglePassword);
+            }}
+            outline
+            color="secondary"
+            size="sm"
+          >
+            {togglePassword ? "show" : "hide"}
+          </Button>
           {errors.password && errors.password.message}
         </div>
         <Button type="submit" color="info">
-          Submit
+          {IsLoading ? <Spinner size="sm" /> : "LOGIN"}
         </Button>
       </form>
     </Container>
