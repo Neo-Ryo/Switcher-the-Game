@@ -1,6 +1,8 @@
-import { LOGIN } from "./actionTypes";
+import { LOGIN, SIGNIN } from "./actionTypes";
 
-const initialeState = {};
+const initialeState = {
+  uuid: "",
+};
 
 const user = (state = initialeState, action) => {
   const { type, payload } = action;
@@ -10,7 +12,11 @@ const user = (state = initialeState, action) => {
       return {
         ...state,
         uuid: payload,
-        level: payload,
+      };
+    case SIGNIN:
+      return {
+        ...state,
+        uuid: payload,
       };
 
     default:

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./css/index.css";
 import App from "./App";
-import "bootswatch/dist/sketchy/bootstrap.min.css";
+import "bootswatch/dist/cyborg/bootstrap.min.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as serviceWorker from "./serviceWorker";
