@@ -29,7 +29,6 @@ export const signin = ({ pseudo, password }) => async (dispatch) => {
     });
     dispatch({ type: SIGNIN, payload: uuid });
     localStorage.setItem("uuid", uuid);
-
     toast.success(`Welcome ${pseudo}`);
   } catch (error) {
     toast.error("Something went wrong...");
