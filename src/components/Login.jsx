@@ -8,6 +8,7 @@ import { login } from "./store/actionCreators";
 const Login = () => {
   const [IsLoading, setIsLoading] = useState(false);
   const [togglePassword, setTogglePassword] = useState(true);
+  const [toggleRegister, setToggleRegister] = useState(true);
   //useForm const below
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
@@ -24,6 +25,19 @@ const Login = () => {
 
   return (
     <Container className={style.wrapper} fluid>
+      <Button
+        onClick={() => setToggleRegister(!toggleRegister)}
+        color={toggleRegister ? "success" : ""}
+      >
+        Loging
+      </Button>
+      <p>OR</p>
+      <Button
+        onClick={() => setToggleRegister(!toggleRegister)}
+        color={toggleRegister ? "" : "success"}
+      >
+        Signing
+      </Button>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit(submitLogs)}>
         <label for="pseudo" className={style.label}>
@@ -57,8 +71,7 @@ const Login = () => {
             onClick={() => {
               setTogglePassword(!togglePassword);
             }}
-            outline
-            color="secondary"
+            color={togglePassword ? "" : "secondary"}
             size="sm"
           >
             {togglePassword ? "show" : "hide"}
