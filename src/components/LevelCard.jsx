@@ -2,13 +2,13 @@ import React from "react";
 import { Card, Button, CardTitle, CardText } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const LevelCard = ({ level, description, id, isUnlock }) => {
+const LevelCard = ({ level, description, id, isUnlock, color }) => {
   return (
     <Card body>
       <CardTitle>{level}</CardTitle>
       <CardText>{description}</CardText>
       <Link to={`levels/${id}`}>
-        <Button color="danger" disabled={isUnlock}>
+        <Button color={color} disabled={isUnlock}>
           Go !
         </Button>
       </Link>
