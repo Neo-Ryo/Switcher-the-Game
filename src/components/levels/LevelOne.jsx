@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "../levels/css/LevelOneToTen.module.css";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
 import { url } from "../../urls";
 import { useSelector } from "react-redux";
@@ -16,7 +16,9 @@ export default function LevelOne() {
   const [switchTwo, setswitchTwo] = useState(true);
   const [switchThree, setswitchThree] = useState(false);
 
-  const { uuid } = user;
+  const levelId = 1;
+  const uuid = localStorage.getItem("uuid");
+  const levelStored = localStorage.getItem("level");
 
   useEffect(() => {
     const getUser = async () => {
@@ -24,7 +26,6 @@ export default function LevelOne() {
         setIsLoading(true);
         const res = await Axios.get(`${url}/users/${uuid}`);
         setUser(res.data);
-        console.log("coucou", res.data, uuid, `${url}/users/${uuid}`);
       } catch (error) {
         alert("Problems! ReLogin please!");
       } finally {
@@ -67,12 +68,26 @@ export default function LevelOne() {
   if (isSolved) {
     return (
       <div>
-        <h1>CONGRATULATION!</h1>
+        {levelStored >= levelId ? (
+          <h1>CONGRATULATION you did it again!</h1>
+        ) : (
+          <h1>CONGRATULATION!</h1>
+        )}
         <Link to="/game-board">
-          <Button>Back to dashboard</Button>
+          {levelStored >= levelId ? (
+            <Button color="success">Back to dashboard</Button>
+          ) : (
+            <Button color="success" onClick={() => levelUp()}>
+              Back to dashboard
+            </Button>
+          )}
         </Link>
       </div>
     );
+  }
+
+  if (isLoading) {
+    return <Spinner />;
   }
   return (
     <div className={style.wrapper}>

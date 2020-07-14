@@ -11,14 +11,14 @@ import user from "./store/user.reducer";
 export default function GameBoard() {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const uuid = useSelector((state) => state.user.uuid);
+  const uuid = localStorage.getItem("uuid");
   useEffect(() => {
     const getUser = async () => {
       try {
         setIsLoading(true);
         const res = await Axios.get(`${url}/users/${uuid}`);
         setUser(res.data);
-        console.log("coucou", res.data, uuid, `${url}/users/${uuid}`);
+        localStorage.setItem("level", res.data.level);
       } catch (error) {
         alert("Problems! ReLogin please!");
       } finally {

@@ -12,6 +12,7 @@ export const login = ({ pseudo, password }) => async (dispatch) => {
       password,
     });
     dispatch({ type: LOGIN, payload: uuid });
+    localStorage.setItem("uuid", uuid);
     toast.success(`Welcome back ${pseudo}`);
   } catch (error) {
     toast.error("Something went wrong...");
@@ -27,6 +28,8 @@ export const signin = ({ pseudo, password }) => async (dispatch) => {
       password,
     });
     dispatch({ type: SIGNIN, payload: uuid });
+    localStorage.setItem("uuid", uuid);
+
     toast.success(`Welcome ${pseudo}`);
   } catch (error) {
     toast.error("Something went wrong...");
