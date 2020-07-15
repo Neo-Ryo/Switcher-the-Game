@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
 import { url } from "../../urls";
-import { useSelector } from "react-redux";
 
 export default function LevelOne() {
   const [user, setUser] = useState();
