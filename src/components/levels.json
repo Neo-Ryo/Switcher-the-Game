@@ -1,14 +1,22 @@
 [
   {
     "id": 1,
-    "description": "the easiest level down here"
+    "description": "The easiest level down here"
   },
   {
     "id": 2,
-    "description": "the easiest level down here"
+    "description": "Ok let's actually start"
   },
   {
     "id": 3,
-    "description": "the easiest level down here"
+    "description": "Ok try this one out"
+  },
+  {
+    "id": 4,
+    "description": "You think you will make it?"
+  },
+  {
+    "id": 5,
+    "description": "Half way, this means you're ambitous!"
   }
 ]

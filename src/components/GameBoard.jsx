@@ -12,6 +12,7 @@ export default function GameBoard() {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const uuid = localStorage.getItem("uuid");
+  const levelStored = localStorage.getItem("level");
   useEffect(() => {
     const getUser = async () => {
       try {
@@ -37,7 +38,7 @@ export default function GameBoard() {
       <h3> Select a level</h3>
       <Row>
         {lvl.map((i) => (
-          <Col xs="12" sm="6" lg="3" style={{ marginTop: "2%" }}>
+          <Col xs="12" sm="6" lg="3" style={{ marginTop: "5vh" }}>
             <LevelCard
               level={i.id}
               description={i.description}

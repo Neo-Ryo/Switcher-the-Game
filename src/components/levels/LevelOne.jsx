@@ -67,13 +67,13 @@ export default function LevelOne() {
   if (isSolved) {
     return (
       <div>
-        {levelStored >= levelId ? (
+        {levelStored > levelId ? (
           <h1>CONGRATULATION you did it again!</h1>
         ) : (
           <h1>CONGRATULATION!</h1>
         )}
         <Link to="/game-board">
-          {levelStored >= levelId ? (
+          {levelStored > levelId ? (
             <Button color="success">Back to dashboard</Button>
           ) : (
             <Button color="success" onClick={() => levelUp()}>
