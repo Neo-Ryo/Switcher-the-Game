@@ -43,7 +43,8 @@ const Login = () => {
     }
   };
 
-  const postNewImage = () => {      Axios.post('https://api.imgur.com/3/image', logo, {
+  const postNewImage = () => {      
+    Axios.post('https://api.imgur.com/3/image', logo, {
         headers: {
           Authorization: `Client-ID ${imgurToken}`,
         },        .then((res) => {
