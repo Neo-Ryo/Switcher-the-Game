@@ -13,15 +13,16 @@ const Login = () => {
   const [pseudo, setPseudo] = useState();
   const [password, setPassword] = useState();
   const [picture, setPicture] = useState(null);
-  const handlePicture = (e) => {
-    setPicture(URL.createObjectURL(e.target.files[0]));
-  };
   //useForm const below
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
   const uuid = useSelector((state) => state.user.uuid);
 
   const history = useHistory();
+
+  const handlePicture = (e) => {
+    setPicture(URL.createObjectURL(e.target.files[0]));
+  };
 
   const submitLogs = async (data) => {
     try {
@@ -43,27 +44,15 @@ const Login = () => {
     }
   };
 
-  const postNewImage = () => {      
-    Axios.post('https://api.imgur.com/3/image', logo, {
-        headers: {
-          Authorization: `Client-ID ${imgurToken}`,
-        },        .then((res) => {
-                    return Axios.post(
-            `${host}/api/v1/partners`,
-            {
-              label,
-              description,
-              url,
-              logo: res.data.data.link,
-              favorite,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-        })
+  const postNewImage = async () => {
+    // try {
+    //   const res = await Axios.post('https://api.imgur.com/3/image', picture, {
+    //       headers: {
+    //         Authorization: `Client-ID ${imgurToken}`,
+    //       }})
+    // } catch (error) {
+    // }
+  };
 
   useEffect(() => {
     if (uuid) {
@@ -175,27 +164,6 @@ const Login = () => {
                     </Button>
                   </Col>
                 </Row>
-                <label for="picture" className={style.label}>
-                  Select a picture
-                </label>
-                <div>
-                  <input
-                    className={style.input}
-                    name="picture"
-                    type="file"
-                    file={picture}
-                    onChange={handlePicture}
-                  />
-                  {errors.password && errors.password.message}
-                </div>
-                <div>
-                  <img
-                    src={picture}
-                    alt="this is your profile"
-                    width="200px"
-                    height="200px"
-                  />
-                </div>
 
                 <Button type="submit" color="info" disabled={isLoading}>
                   {isLoading ? <Spinner size="sm" /> : "LOGIN"}
@@ -315,6 +283,27 @@ const Login = () => {
                     </Button>
                   </Col>
                 </Row>
+                <label for="picture" className={style.label}>
+                  Select a picture
+                </label>
+                <div>
+                  <input
+                    className={style.input}
+                    name="picture"
+                    type="file"
+                    file={picture}
+                    onChange={handlePicture}
+                  />
+                  {errors.password && errors.password.message}
+                </div>
+                <div>
+                  <img
+                    src={picture}
+                    alt="this is your profile"
+                    width="15%"
+                    height="15%"
+                  />
+                </div>
                 <Button type="submit" color="info">
                   {isLoading ? <Spinner size="sm" /> : "LOGIN"}
                 </Button>
