@@ -12,6 +12,10 @@ const Login = () => {
   const [toggleRegister, setToggleRegister] = useState(true);
   const [pseudo, setPseudo] = useState();
   const [password, setPassword] = useState();
+  const [picture, setPicture] = useState(null);
+  const handlePicture = (e) => {
+    setPicture(URL.createObjectURL(e.target.files[0]));
+  };
   //useForm const below
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
@@ -38,6 +42,27 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+  const postNewImage = () => {      Axios.post('https://api.imgur.com/3/image', logo, {
+        headers: {
+          Authorization: `Client-ID ${imgurToken}`,
+        },        .then((res) => {
+                    return Axios.post(
+            `${host}/api/v1/partners`,
+            {
+              label,
+              description,
+              url,
+              logo: res.data.data.link,
+              favorite,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        })
 
   useEffect(() => {
     if (uuid) {
@@ -149,6 +174,28 @@ const Login = () => {
                     </Button>
                   </Col>
                 </Row>
+                <label for="picture" className={style.label}>
+                  Select a picture
+                </label>
+                <div>
+                  <input
+                    className={style.input}
+                    name="picture"
+                    type="file"
+                    file={picture}
+                    onChange={handlePicture}
+                  />
+                  {errors.password && errors.password.message}
+                </div>
+                <div>
+                  <img
+                    src={picture}
+                    alt="this is your profile"
+                    width="200px"
+                    height="200px"
+                  />
+                </div>
+
                 <Button type="submit" color="info" disabled={isLoading}>
                   {isLoading ? <Spinner size="sm" /> : "LOGIN"}
                 </Button>
