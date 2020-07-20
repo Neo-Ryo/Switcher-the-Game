@@ -1,7 +1,8 @@
-import { LOGIN, SIGNIN } from "./actionTypes";
+import { LOGIN, SIGNIN, LEVELUP } from "./actionTypes";
 
 const initialeState = {
   uuid: "",
+  level: null,
 };
 
 const user = (state = initialeState, action) => {
@@ -17,6 +18,11 @@ const user = (state = initialeState, action) => {
       return {
         ...state,
         uuid: payload,
+      };
+    case LEVELUP:
+      return {
+        ...state,
+        level: payload,
       };
 
     default:

@@ -3,7 +3,9 @@ import style from "../levels/css/LevelOneToTen.module.css";
 import { Link } from "react-router-dom";
 import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { url } from "../../urls";
+import { levelUp } from "../store/actionCreators";
 
 export default function LevelOne() {
   const [user, setUser] = useState();
@@ -15,28 +17,31 @@ export default function LevelOne() {
   const [switchTwo, setswitchTwo] = useState(true);
   const [switchThree, setswitchThree] = useState(false);
 
+  const dispatch = useDispatch();
+  const level = useSelector((state) => state.user.level);
+
   const levelId = 1;
   const uuid = localStorage.getItem("uuid");
-  const levelStored = localStorage.getItem("level");
+  // const levelStored = localStorage.getItem("level");
+
+  const getUser = async () => {
+    try {
+      setIsLoading(true);
+      const res = await Axios.get(`${url}/users/${uuid}`);
+      setUser(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      alert("Problems!");
+    }
+  };
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        setIsLoading(true);
-        const res = await Axios.get(`${url}/users/${uuid}`);
-        setUser(res.data);
-      } catch (error) {
-        alert("Problems! ReLogin please!");
-      } finally {
-        setIsLoading(false);
-      }
-    };
     getUser();
   }, []);
 
-  const levelUp = async () => {
+  const goLevelUp = async () => {
     try {
-      await Axios.post(`${url}/users/${uuid}/level`);
+      await dispatch(levelUp());
     } catch (error) {
       alert("something bad happened");
     }
@@ -67,16 +72,16 @@ export default function LevelOne() {
   if (isSolved) {
     return (
       <div>
-        {levelStored > levelId ? (
+        {level > levelId ? (
           <h1>CONGRATULATION you did it again!</h1>
         ) : (
           <h1>CONGRATULATION!</h1>
         )}
         <Link to="/game-board">
-          {levelStored > levelId ? (
+          {level > levelId ? (
             <Button color="success">Back to dashboard</Button>
           ) : (
-            <Button color="success" onClick={() => levelUp()}>
+            <Button color="success" onClick={() => goLevelUp()}>
               Back to dashboard
             </Button>
           )}

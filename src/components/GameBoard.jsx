@@ -5,27 +5,25 @@ import style from "../css/GameBoard.module.css";
 import lvl from "./levels.json";
 import Axios from "axios";
 import { url } from "../urls";
-import { useSelector } from "react-redux";
-import user from "./store/user.reducer";
 
 export default function GameBoard() {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const uuid = localStorage.getItem("uuid");
-  const levelStored = localStorage.getItem("level");
+
+  const getUser = async () => {
+    try {
+      setIsLoading(true);
+      const res = await Axios.get(`${url}/users/${uuid}`);
+      setUser(res.data);
+      localStorage.setItem("level", res.data.level);
+      setIsLoading(false);
+    } catch (error) {
+      alert("Problems! ReLogin please!");
+    }
+  };
+
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        setIsLoading(true);
-        const res = await Axios.get(`${url}/users/${uuid}`);
-        setUser(res.data);
-        localStorage.setItem("level", res.data.level);
-      } catch (error) {
-        alert("Problems! ReLogin please!");
-      } finally {
-        setIsLoading(false);
-      }
-    };
     getUser();
   }, []);
 

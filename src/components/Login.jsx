@@ -28,9 +28,9 @@ const Login = () => {
     try {
       setIsLoading(true);
       await dispatch(login({ ...data }));
-    } catch (error) {
-    } finally {
       setIsLoading(false);
+    } catch (error) {
+      //import notify
     }
   };
 
@@ -38,9 +38,9 @@ const Login = () => {
     try {
       setIsLoading(true);
       await dispatch(signin({ ...data }));
-    } catch (error) {
-    } finally {
       setIsLoading(false);
+    } catch (error) {
+      //import toastify
     }
   };
 
