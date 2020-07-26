@@ -42,6 +42,7 @@ export default function LevelOne() {
   const goLevelUp = async () => {
     try {
       await dispatch(levelUp());
+      getUser();
     } catch (error) {
       alert("something bad happened");
     }

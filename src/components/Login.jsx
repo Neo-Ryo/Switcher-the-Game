@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { url } from "../urls";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Spinner } from "reactstrap";
 import style from "../css/Form.module.css";
 import { login, signin } from "./store/actionCreators";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,46 +15,51 @@ const Login = () => {
   const [toggleRegister, setToggleRegister] = useState(true);
   const [pseudo, setPseudo] = useState();
   const [password, setPassword] = useState();
-  const [picture, setPicture] = useState(null);
+  const [picture, setPicture] = useState("");
   //useForm const below
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
-  const uuid = useSelector((state) => state.user.uuid);
+  const uuid = localStorage.getItem("uuid");
+  const imgurClient = "2a3093e8d9589af";
 
   const history = useHistory();
 
   const handlePicture = (e) => {
-    setPicture(URL.createObjectURL(e.target.files[0]));
+    setPicture(e.target.files[0]);
   };
 
   const submitLogs = async (data) => {
     try {
       setIsLoading(true);
       await dispatch(login({ ...data }));
-      setIsLoading(false);
     } catch (error) {
-      //import notify
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const submitSigns = async (data) => {
     try {
       setIsLoading(true);
-      await dispatch(signin({ ...data }));
-      setIsLoading(false);
+      const resImgur = await axios.post(
+        "https://api.imgur.com/3/image",
+        picture,
+        { headers: { Authorization: `Client-ID ${imgurClient}` } }
+      );
+      const {
+        data: { uuid },
+      } = await axios.post(`${url}/users`, {
+        pseudo,
+        password,
+        picture: resImgur.data.data.link,
+      });
+      localStorage.setItem("uuid", uuid);
     } catch (error) {
-      //import toastify
+      toast.error("I must fill every fields and select an picture...");
+    } finally {
+      setIsLoading(false);
     }
-  };
-
-  const postNewImage = async () => {
-    // try {
-    //   const res = await Axios.post('https://api.imgur.com/3/image', picture, {
-    //       headers: {
-    //         Authorization: `Client-ID ${imgurToken}`,
-    //       }})
-    // } catch (error) {
-    // }
   };
 
   useEffect(() => {
