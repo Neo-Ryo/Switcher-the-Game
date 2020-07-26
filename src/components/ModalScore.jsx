@@ -8,7 +8,6 @@ import {
   Table,
 } from "reactstrap";
 import { GrScorecard } from "react-icons/gr";
-import { useEffect } from "react";
 
 const ModalScore = ({ users }) => {
   const [modal, setModal] = useState(false);
