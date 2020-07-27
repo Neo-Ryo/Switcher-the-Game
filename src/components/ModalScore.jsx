@@ -13,8 +13,10 @@ const ModalScore = ({ users }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
   const Users = users;
   const nbrUsers = Users.length;
+
   const lvl1 =
     (Users.filter((user) => user.level === 2).length / nbrUsers) * 100;
   const lvl2 =
@@ -35,8 +37,7 @@ const ModalScore = ({ users }) => {
     (Users.filter((user) => user.level === 10).length / nbrUsers) * 100;
   const lvl10 =
     (Users.filter((user) => user.level === 11).length / nbrUsers) * 100;
-  console.log(nbrUsers);
-  console.log(lvl1);
+
   return (
     <div>
       <Button color="warning" onClick={toggle}>

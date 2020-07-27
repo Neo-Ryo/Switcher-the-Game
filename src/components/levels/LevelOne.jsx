@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "../levels/css/LevelOneToTen.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ export default function LevelOne() {
   const [switchOne, setswitchOne] = useState(false);
   const [switchTwo, setswitchTwo] = useState(true);
   const [switchThree, setswitchThree] = useState(false);
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const level = useSelector((state) => state.user.level);
 
@@ -43,6 +43,7 @@ export default function LevelOne() {
     try {
       await dispatch(levelUp());
       getUser();
+      history.push("/game-board");
     } catch (error) {
       alert("something bad happened");
     }
@@ -78,15 +79,15 @@ export default function LevelOne() {
         ) : (
           <h1>CONGRATULATION!</h1>
         )}
-        <Link to="/game-board">
-          {level > levelId ? (
+        {level > levelId ? (
+          <Link to="/game-board">
             <Button color="success">Back to dashboard</Button>
-          ) : (
-            <Button color="success" onClick={() => goLevelUp()}>
-              Back to dashboard
-            </Button>
-          )}
-        </Link>
+          </Link>
+        ) : (
+          <Button color="success" onClick={() => goLevelUp()}>
+            Back to dashboard
+          </Button>
+        )}
       </div>
     );
   }

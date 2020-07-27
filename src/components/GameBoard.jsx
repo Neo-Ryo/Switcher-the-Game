@@ -8,6 +8,7 @@ import {
   CardTitle,
   Spinner,
   CardSubtitle,
+  Container,
 } from "reactstrap";
 import LevelCard from "./LevelCard";
 import ModalScore from "./ModalScore";
@@ -54,9 +55,9 @@ export default function GameBoard() {
     return <Spinner />;
   }
   return (
-    <Col className={style.wrapper}>
+    <Container fluid className={style.wrapper}>
       <Row>
-        <Col lg={{ size: 2 }} md={{ size: 6 }}>
+        <Col lg={{ size: 2 }} md={{ size: 4 }}>
           <Card>
             <CardImg top width="100%" src={user.picture} alt="Card image cap" />
             <CardBody>
@@ -65,11 +66,11 @@ export default function GameBoard() {
             </CardBody>
           </Card>
         </Col>
-        <Col>
+        <Col lg={{ size: 8 }} md={{ size: 4 }}>
           <h1 style={{ color: "orange" }}>Welcome!</h1>
           <h3 style={{ color: "orange" }}> Select a level</h3>
         </Col>
-        <Col lg={{ size: 2 }}>
+        <Col lg={{ size: 2 }} md={{ size: 4 }}>
           <ModalScore users={users} />
         </Col>
       </Row>
@@ -77,6 +78,7 @@ export default function GameBoard() {
         {lvl.map((i) => (
           <Col xs="12" sm="6" lg="3" style={{ marginTop: "5vh" }}>
             <LevelCard
+              key={i.id}
               level={i.id}
               description={i.description}
               id={i.id}
@@ -86,6 +88,6 @@ export default function GameBoard() {
           </Col>
         ))}
       </Row>
-    </Col>
+    </Container>
   );
 }
