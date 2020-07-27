@@ -42,6 +42,7 @@ export const levelUp = () => async (dispatch) => {
       data: { level },
     } = await axios.post(`${url}/users/${uuid}/level`);
     dispatch({ type: LEVELUP, payload: level });
+    sessionStorage.setItem("level", level);
   } catch (error) {
     toast.error("Something went wrong...");
   }

@@ -3,7 +3,7 @@ import style from "../levels/css/LevelOneToTen.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
 
