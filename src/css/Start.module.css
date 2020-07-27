@@ -6,9 +6,10 @@
 .title {
   padding-top: 15%;
   margin-bottom: 10vh;
+  white-space: nowrap;
 }
 
-input[type="checkbox"] {
+.checkBox {
   margin: 10px;
   position: relative;
   width: 480px;
@@ -21,19 +22,19 @@ input[type="checkbox"] {
     inset 0 0 10px rgba(0, 0, 0, 1);
 }
 
-input:checked[type="checkbox"]:nth-of-type(1) {
+.checkBox:nth-of-type(1) {
   background: linear-gradient(0deg, #e67e22, #f39c12);
   box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
     inset 0 0 10px rgba(0, 0, 0, 1);
 }
 
-input:checked[type="checkbox"]:nth-of-type(2) {
+.checkBox:checked:nth-of-type(2) {
   background: linear-gradient(0deg, #70a1ff, #1e90ff);
   box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
     inset 0 0 10px rgba(0, 0, 0, 1);
 }
 
-input[type="checkbox"]:before {
+.checkBox:before {
   content: "";
   position: absolute;
   top: 0;
@@ -47,11 +48,11 @@ input[type="checkbox"]:before {
   transition: 0.5s;
 }
 
-input:checked[type="checkbox"]:before {
+.checkBox:checked:before {
   left: 241px;
 }
 
-input[type="checkbox"]:after {
+.checkBox:after {
   content: "";
   position: absolute;
   top: calc(50% - 2px);
@@ -63,7 +64,7 @@ input[type="checkbox"]:after {
   transition: 0.5s;
 }
 
-input:checked[type="checkbox"]:after {
+.checkBox:checked:after {
   left: 450px;
 }
 
@@ -80,23 +81,23 @@ input:checked[type="checkbox"]:after {
 }
 
 @media screen and (max-width: 720px) {
-  input[type="checkbox"] {
+  .checkBox {
     width: 300px;
   }
 
-  input[type="checkbox"]:before {
+  .checkBox:before {
     width: 120px;
   }
 
-  input:checked[type="checkbox"]:before {
+  .checkBox:before {
     left: 181px;
   }
 
-  input[type="checkbox"]:after {
+  .checkBox:after {
     left: 100px;
   }
 
-  input:checked[type="checkbox"]:after {
+  .checkBox:after {
     left: 280px;
   }
 }

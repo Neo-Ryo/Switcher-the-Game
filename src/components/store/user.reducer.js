@@ -13,11 +13,13 @@ const user = (state = initialeState, action) => {
       return {
         ...state,
         uuid: payload,
+        level: payload,
       };
     case SIGNIN:
       return {
         ...state,
         uuid: payload,
+        level: payload,
       };
     case LEVELUP:
       return {

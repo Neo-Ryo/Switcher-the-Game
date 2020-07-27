@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import style from "../levels/css/LevelOneToTen.module.css";
+import style from "./css/LevelTwo.module.css";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Spinner } from "reactstrap";
+import { Button, Spinner, Container, Row, Col } from "reactstrap";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { url } from "../../urls";
@@ -10,24 +10,25 @@ import { levelUp } from "../store/actionCreators";
 export default function LevelTwo() {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [levelDone, setLevelDone] = useState(false);
   const [isSolved, setisSolved] = useState(false);
 
   //those states are in game states
   const [switchOne, setswitchOne] = useState(false);
-  const [switchTwo, setswitchTwo] = useState(true);
+  const [switchTwo, setswitchTwo] = useState(false);
   const [switchThree, setswitchThree] = useState(false);
-  const [switchFour, setswitchFour] = useState(false);
+  const [switchFour, setswitchFour] = useState(true);
   const [switchFive, setswitchFive] = useState(true);
-  const [switchSix, setswitchSix] = useState(false);
+  const [switchSix, setswitchSix] = useState(true);
   const [switchSeven, setswitchSeven] = useState(false);
-  const [switchEight, setswitchEight] = useState(true);
+  const [switchEight, setswitchEight] = useState(false);
   const [switchNine, setswitchNine] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const level = useSelector((state) => state.user.level);
+  const level = sessionStorage.getItem("level");
 
   const levelId = 1;
-  const uuid = localStorage.getItem("uuid");
+  const uuid = sessionStorage.getItem("uuid");
   // const levelStored = localStorage.getItem("level");
 
   const getUser = async () => {
@@ -57,21 +58,55 @@ export default function LevelTwo() {
 
   const switchOneTrick = () => {
     setswitchOne(!switchOne);
-    setswitchTwo(!switchTwo);
+    setswitchNine(!switchNine);
   };
 
   const switchTwoTrick = () => {
     setswitchOne(!switchOne);
     setswitchTwo(!switchTwo);
-    setswitchThree(!switchThree);
+    setswitchFour(!switchFour);
+    setswitchSeven(!switchSeven);
   };
 
   const switchThreeTrick = () => {
     setswitchOne(!switchOne);
     setswitchThree(!switchThree);
+    setswitchFour(!switchFour);
   };
 
-  if (switchOne && switchTwo && switchThree) {
+  const switchFourTrick = () => {
+    setswitchThree(!switchThree);
+    setswitchFour(!switchFour);
+    setswitchNine(!switchNine);
+  };
+
+  const switchFiveTrick = () => {
+    setswitchFive(!switchFive);
+    setswitchEight(!switchEight);
+  };
+
+  const switchSixTrick = () => {
+    setswitchTwo(!switchTwo);
+    setswitchSix(!switchSix);
+
+    setswitchSeven(!switchSeven);
+  };
+
+  if (
+    !switchOne &&
+    !switchTwo &&
+    !switchThree &&
+    !switchFour &&
+    !switchFive &&
+    !switchSix &&
+    !switchSeven &&
+    !switchEight &&
+    !switchNine
+  ) {
+    setLevelDone(true);
+  }
+
+  if (levelDone) {
     setTimeout(() => {
       setisSolved(true);
     }, 1000);
@@ -102,39 +137,155 @@ export default function LevelTwo() {
     return <Spinner />;
   }
   return (
-    <div className={style.wrapper}>
-      <h1 className={style.title}>Level 1</h1>
-      <p>Turn all of them on!</p>
-      <div>
-        <label className={style.switch}>
-          <input
-            type="checkbox"
-            onClick={() => switchOneTrick()}
-            checked={switchOne}
-          />
-          <span className={style.slider}></span>
-        </label>
-      </div>
-      <div>
-        <label className={style.switch}>
-          <input
-            type="checkbox"
-            onClick={() => switchTwoTrick()}
-            checked={switchTwo}
-          />
-          <span className={style.slider}></span>
-        </label>
-      </div>
-      <div>
-        <label className={style.switch}>
-          <input
-            type="checkbox"
-            onClick={() => switchThreeTrick()}
-            checked={switchThree}
-          />
-          <span className={style.slider}></span>
-        </label>
-      </div>
-    </div>
+    <Container fluid className={levelDone ? style.wrapper1 : style.wrapper1}>
+      <Row>
+        <Col>
+          <Link to="/game-board">
+            <Button outline block>
+              Back to dashboard
+            </Button>
+          </Link>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h1 style={{ color: "black" }}>Level 2</h1>
+          <p>
+            All of this light is kinda dazzling, turn all of the switches OFF!
+          </p>
+        </Col>
+      </Row>
+      <Row className={style.switchDiv}>
+        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchOne}
+                  onClick={switchOneTrick}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchTwo}
+                  onClick={() => switchTwoTrick()}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchThree}
+                  onClick={() => switchThreeTrick()}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+        </Col>
+        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchFour}
+                  onClick={() => switchFourTrick()}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchFive}
+                  onClick={() => switchFiveTrick()}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchSix}
+                  onClick={() => switchSixTrick()}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+        </Col>
+        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchSeven}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchEight}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+          <Col>
+            <label className={style.label}>
+              <div className={style.toggle}>
+                <input
+                  className={style.toggleState}
+                  type="checkbox"
+                  name="check"
+                  checked={switchNine}
+                />
+                <div className={style.indicator}></div>
+              </div>
+            </label>
+          </Col>
+        </Col>
+      </Row>
+    </Container>
   );
 }

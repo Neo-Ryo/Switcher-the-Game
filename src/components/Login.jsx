@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { url } from "../urls";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "reactstrap";
 import style from "../css/Form.module.css";
 import { login, signin } from "./store/actionCreators";
@@ -19,7 +19,7 @@ const Login = () => {
   //useForm const below
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
-  const uuid = localStorage.getItem("uuid");
+  const uuid = sessionStorage.getItem("uuid");
   const imgurClient = "2a3093e8d9589af";
 
   const history = useHistory();
@@ -54,7 +54,7 @@ const Login = () => {
         password,
         picture: resImgur.data.data.link,
       });
-      localStorage.setItem("uuid", uuid);
+      sessionStorage.setItem("uuid", uuid);
     } catch (error) {
       toast.error("I must fill every fields and select an picture...");
     } finally {
@@ -64,7 +64,7 @@ const Login = () => {
 
   useEffect(() => {
     if (uuid) {
-      return history.push("/game-board");
+      history.push("/game-board");
     }
   }, [uuid]);
 

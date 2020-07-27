@@ -21,7 +21,7 @@ export default function GameBoard() {
   const [user, setUser] = useState({});
   const [users, setUsers] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const uuid = localStorage.getItem("uuid");
+  const uuid = sessionStorage.getItem("uuid");
 
   const getUsers = async () => {
     try {
@@ -39,7 +39,7 @@ export default function GameBoard() {
       setIsLoading(true);
       const res = await Axios.get(`${url}/users/${uuid}`);
       setUser(res.data);
-      localStorage.setItem("level", res.data.level);
+      sessionStorage.setItem("level", res.data.level);
       setIsLoading(false);
     } catch (error) {
       alert("Problems!");

@@ -18,10 +18,10 @@ export default function LevelOne() {
   const [switchThree, setswitchThree] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const level = useSelector((state) => state.user.level);
+  const level = sessionStorage.getItem("level");
 
   const levelId = 1;
-  const uuid = localStorage.getItem("uuid");
+  const uuid = sessionStorage.getItem("uuid");
   // const levelStored = localStorage.getItem("level");
 
   const getUser = async () => {
@@ -75,18 +75,21 @@ export default function LevelOne() {
     return (
       <div>
         {level > levelId ? (
-          <h1>CONGRATULATION you did it again!</h1>
+          <>
+            <h1 style={{ marginTop: "40vh" }}>
+              CONGRATULATION you did it again!
+            </h1>
+            <Link to="/game-board">
+              <Button color="success">Back to dashboard</Button>
+            </Link>
+          </>
         ) : (
-          <h1>CONGRATULATION!</h1>
-        )}
-        {level > levelId ? (
-          <Link to="/game-board">
-            <Button color="success">Back to dashboard</Button>
-          </Link>
-        ) : (
-          <Button color="success" onClick={() => goLevelUp()}>
-            Back to dashboard
-          </Button>
+          <>
+            <h1 style={{ marginTop: "40vh" }}>CONGRATULATION!</h1>
+            <Button color="success" onClick={() => goLevelUp()}>
+              Back to dashboard
+            </Button>
+          </>
         )}
       </div>
     );
@@ -97,6 +100,11 @@ export default function LevelOne() {
   }
   return (
     <div className={style.wrapper}>
+      <Link to="/game-board">
+        <Button outline color="warning" block>
+          back to dashboard
+        </Button>
+      </Link>
       <h1 className={style.title}>Level 1</h1>
       <p>Turn all of them on!</p>
       <div>
