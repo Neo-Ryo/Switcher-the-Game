@@ -52,7 +52,7 @@ export default function LevelTwo() {
       getUser();
       history.push("/game-board");
     } catch (error) {
-      alert("something bad happened");
+      console.log(error);
     }
   };
 
