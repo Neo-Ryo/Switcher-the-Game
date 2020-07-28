@@ -23,23 +23,14 @@ export default function GameBoard() {
   const [isLoading, setIsLoading] = useState(true);
   const uuid = sessionStorage.getItem("uuid");
 
-  const getUsers = async () => {
+  const getAllInfos = async () => {
     try {
       setIsLoading(true);
-      const res = await Axios.get(`${url}/users`);
-      setUsers(res.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getOneUser = async () => {
-    try {
-      setIsLoading(true);
-      const res = await Axios.get(`${url}/users/${uuid}`);
-      setUser(res.data);
-      sessionStorage.setItem("level", res.data.level);
+      const resUser = await Axios.get(`${url}/users/${uuid}`);
+      const resUsers = await Axios.get(`${url}/users`);
+      setUser(resUser.data);
+      setUsers(resUsers.data);
+      sessionStorage.setItem("level", resUser.data.level);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -47,8 +38,7 @@ export default function GameBoard() {
   };
 
   useEffect(() => {
-    getUsers();
-    getOneUser();
+    getAllInfos();
   }, [uuid]);
 
   if (isLoading) {
