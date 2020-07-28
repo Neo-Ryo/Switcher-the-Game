@@ -306,7 +306,7 @@ const Login = () => {
                 </div>
                 <div>
                   <img
-                    src={picture}
+                    src={URL.createObjectURL(picture)}
                     alt="this is your profile"
                     width="15%"
                     height="15%"

@@ -31,7 +31,7 @@ export default function LevelOne() {
       setUser(res.data);
       setIsLoading(false);
     } catch (error) {
-      alert("Problems!");
+      console.log(error);
     }
   };
 
@@ -45,7 +45,7 @@ export default function LevelOne() {
       getUser();
       history.push("/game-board");
     } catch (error) {
-      alert("something bad happened");
+      console.log(error);
     }
   };
 

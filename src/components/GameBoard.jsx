@@ -30,7 +30,7 @@ export default function GameBoard() {
       setUsers(res.data);
       setIsLoading(false);
     } catch (error) {
-      alert("Problems!");
+      console.log(error);
     }
   };
 
@@ -42,14 +42,14 @@ export default function GameBoard() {
       sessionStorage.setItem("level", res.data.level);
       setIsLoading(false);
     } catch (error) {
-      alert("Problems!");
+      console.log(error);
     }
   };
 
   useEffect(() => {
     getUsers();
     getOneUser();
-  }, []);
+  }, [uuid]);
 
   if (isLoading) {
     return <Spinner />;
@@ -59,7 +59,7 @@ export default function GameBoard() {
       <Row>
         <Col lg={{ size: 2 }} md={{ size: 4 }}>
           <Card>
-            <CardImg top width="100%" src={user.picture} alt="Card image cap" />
+            <CardImg top src={user.picture} alt="Card image cap" />
             <CardBody>
               <CardTitle>{user.pseudo}</CardTitle>
               <CardSubtitle>Level: {user.level}</CardSubtitle>
