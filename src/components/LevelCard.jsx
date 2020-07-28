@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LevelCard = ({ level, description, id, isUnlock, color }) => {
   return (
-    <Card body>
+    <Card body color="secondary">
       <CardTitle>{level}</CardTitle>
       <CardText>{description}</CardText>
       <Link to={`levels/${id}`}>
