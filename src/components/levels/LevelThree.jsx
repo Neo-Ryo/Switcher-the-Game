@@ -9,7 +9,7 @@ import { levelUp } from "../store/actionCreators";
 import { Fade } from "react-reveal";
 import ModalThree from "./ModalThree";
 
-export default function LevelTwo() {
+export default function LevelThree() {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
   // const [levelDone, setLevelDone] = useState(false);
