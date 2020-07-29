@@ -2,8 +2,12 @@
   height: 100vh;
 }
 
+.modal {
+  margin-top: 2vh;
+}
+
 .title {
-  padding-top: 15%;
+  margin-top: 10vh;
   margin-bottom: 10vh;
 }
 

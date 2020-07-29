@@ -6,8 +6,10 @@ import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
+import { Fade } from "react-reveal";
+import ModalThree from "./ModalThree";
 
-export default function LevelTwo() {
+export default function LevelThree() {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
   // const [levelDone, setLevelDone] = useState(false);
@@ -15,17 +17,17 @@ export default function LevelTwo() {
 
   //those states are in game states
   const [switchOne, setswitchOne] = useState(false);
-  const [switchTwo, setswitchTwo] = useState(false);
+  const [switchTwo, setswitchTwo] = useState(true);
   const [switchThree, setswitchThree] = useState(false);
-  const [switchFour, setswitchFour] = useState(false);
+  const [switchFour, setswitchFour] = useState(true);
   const [switchFive, setswitchFive] = useState(false);
   const [switchSix, setswitchSix] = useState(false);
   const [switchSeven, setswitchSeven] = useState(false);
-  const [switchEight, setswitchEight] = useState(false);
+  const [switchEight, setswitchEight] = useState(true);
   const [switchNine, setswitchNine] = useState(false);
   const [switchTen, setswitchTen] = useState(false);
   const [switchEleven, setswitchEleven] = useState(false);
-  const [switchTwelve, setswitchTwelve] = useState(false);
+  const [switchTwelve, setswitchTwelve] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
   const level = sessionStorage.getItem("level");
@@ -79,7 +81,6 @@ export default function LevelTwo() {
   };
 
   const switchFourTrick = () => {
-    setswitchThree(!switchThree);
     setswitchFour(!switchFour);
     setswitchNine(!switchNine);
   };
@@ -139,7 +140,7 @@ export default function LevelTwo() {
 
   const switchTwelveTrick = () => {
     setswitchFive(!switchFive);
-    setswitchSix(!switchSix);
+    setswitchFour(!switchFour);
     setswitchSeven(!switchSeven);
     setswitchEight(!switchEight);
     setswitchTwelve(!switchTwelve);
@@ -168,7 +169,7 @@ export default function LevelTwo() {
     return (
       <div>
         {level > levelId ? (
-          <>
+          <Fade>
             <h1 style={{ marginTop: "40vh" }}>
               CONGRATULATION you did it again!
             </h1>
@@ -176,15 +177,15 @@ export default function LevelTwo() {
             <Link to="/game-board">
               <Button color="success">Back to dashboard</Button>
             </Link>
-          </>
+          </Fade>
         ) : (
-          <>
+          <Fade>
             <h1 style={{ marginTop: "40vh" }}>CONGRATULATION!</h1>
             <h3>Lights are out!</h3>
             <Button color="success" onClick={() => goLevelUp()}>
               Back to dashboard
             </Button>
-          </>
+          </Fade>
         )}
       </div>
     );
@@ -206,8 +207,12 @@ export default function LevelTwo() {
       </Row>
       <Row>
         <Col>
+          <ModalThree />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           <h1 style={{ color: "black" }}>Level 3</h1>
-          <p>Its bed time! Switch the lights off please!</p>
         </Col>
       </Row>
       <Row className={style.switchDiv}>

@@ -3,6 +3,10 @@
   height: 100vh;
 }
 
+.modal {
+  margin-top: 2vh;
+}
+
 /* Switch starts here */
 .rocker {
   display: inline-block;

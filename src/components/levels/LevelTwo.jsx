@@ -6,6 +6,8 @@ import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
+import ModalTwo from "./ModalTwo";
+import { Fade } from "react-reveal";
 
 export default function LevelTwo() {
   const [user, setUser] = useState();
@@ -112,20 +114,6 @@ export default function LevelTwo() {
     setswitchNine(!switchNine);
   };
 
-  // if (
-  //   !switchOne &&
-  //   !switchTwo &&
-  //   !switchThree &&
-  //   !switchFour &&
-  //   !switchFive &&
-  //   !switchSix &&
-  //   !switchSeven &&
-  //   !switchEight &&
-  //   !switchNine
-  // ) {
-  //   setLevelDone(true);
-  // }
-
   if (
     !switchOne &&
     !switchTwo &&
@@ -146,7 +134,7 @@ export default function LevelTwo() {
     return (
       <div>
         {level > levelId ? (
-          <>
+          <Fade>
             <h1 style={{ marginTop: "40vh" }}>
               CONGRATULATION you did it again!
             </h1>
@@ -154,15 +142,15 @@ export default function LevelTwo() {
             <Link to="/game-board">
               <Button color="success">Back to dashboard</Button>
             </Link>
-          </>
+          </Fade>
         ) : (
-          <>
+          <Fade>
             <h1 style={{ marginTop: "40vh" }}>CONGRATULATION!</h1>
             <h3>Lights are out!</h3>
             <Button color="success" onClick={() => goLevelUp()}>
               Back to dashboard
             </Button>
-          </>
+          </Fade>
         )}
       </div>
     );
@@ -184,10 +172,8 @@ export default function LevelTwo() {
       </Row>
       <Row>
         <Col>
+          <ModalTwo />
           <h1 style={{ color: "black" }}>Level 2</h1>
-          <p>
-            All of this light is kinda dazzling, turn all of the switches OFF!
-          </p>
         </Col>
       </Row>
       <Row className={style.switchDiv}>

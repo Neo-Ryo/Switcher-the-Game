@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import style from "../levels/css/LevelOneToTen.module.css";
+import style from "../levels/css/LevelOne.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
+import ModalOne from "./ModalOne";
+import { Fade } from "react-reveal";
 
 export default function LevelOne() {
   const [user, setUser] = useState();
@@ -75,21 +77,21 @@ export default function LevelOne() {
     return (
       <div>
         {level > levelId ? (
-          <>
+          <Fade>
             <h1 style={{ marginTop: "40vh" }}>
               CONGRATULATION you did it again!
             </h1>
             <Link to="/game-board">
               <Button color="success">Back to dashboard</Button>
             </Link>
-          </>
+          </Fade>
         ) : (
-          <>
+          <Fade>
             <h1 style={{ marginTop: "40vh" }}>CONGRATULATION!</h1>
             <Button color="success" onClick={() => goLevelUp()}>
               Back to dashboard
             </Button>
-          </>
+          </Fade>
         )}
       </div>
     );
@@ -105,8 +107,8 @@ export default function LevelOne() {
           back to dashboard
         </Button>
       </Link>
+      <ModalOne />
       <h1 className={style.title}>Level 1</h1>
-      <p>Turn all of them on!</p>
       <div>
         <label className={style.switch}>
           <input

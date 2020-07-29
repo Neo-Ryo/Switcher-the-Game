@@ -5,7 +5,7 @@ import { url } from "../urls";
 import { useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "reactstrap";
 import style from "../css/Form.module.css";
-import { login, signin } from "./store/actionCreators";
+import { login } from "./store/actionCreators";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -66,7 +66,7 @@ const Login = () => {
     if (uuid) {
       history.push("/game-board");
     }
-  }, [uuid]);
+  }, [uuid, history]);
 
   if (toggleRegister) {
     return (

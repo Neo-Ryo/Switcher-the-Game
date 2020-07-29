@@ -20,7 +20,7 @@ export default function StartGame() {
     <Container fluid className={style.wrapper}>
       <Row>
         <Col></Col>
-        <Col>
+        <Col md="4" sm="4">
           <audio autoPlay>
             <source src={ambiance} type="audio/mpeg" />
           </audio>
