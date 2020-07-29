@@ -8,6 +8,10 @@
   height: 100vh;
 }
 
+.modal {
+  margin-top: 2vh;
+}
+
 .switchDiv {
   margin-top: 20vh;
 }
