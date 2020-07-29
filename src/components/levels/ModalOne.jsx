@@ -24,7 +24,10 @@ const ModaleOne = (props) => {
         <ModalHeader toggle={toggle}>Instructions</ModalHeader>
         <Typist>
           <ModalBody>
-            <p>Turn all the switches on to pass this EASY level.</p>
+            <p>
+              Turn all the switches on to pass this EASY level. <br /> The "ON"
+              position is on the right.
+            </p>
           </ModalBody>
         </Typist>
         <ModalFooter>

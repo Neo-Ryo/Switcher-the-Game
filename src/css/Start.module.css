@@ -4,7 +4,7 @@
 }
 
 .title {
-  padding-top: 15%;
+  margin-top: 15vh;
   margin-bottom: 10vh;
   color: rgb(255, 136, 0);
   white-space: nowrap;
@@ -81,9 +81,13 @@
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 1100px) {
+  .title {
+    font-size: x-large;
+  }
+
   .checkBox {
-    width: 300px;
+    width: 220px;
   }
 
   .checkBox:before {
@@ -91,14 +95,44 @@
   }
 
   .checkBox:before {
-    left: 181px;
+    left: 0px;
   }
 
   .checkBox:after {
+    left: 90px;
+  }
+
+  .checkBox:checked:after {
+    left: 200px;
+  }
+
+  .checkBox:checked:before {
     left: 100px;
   }
+}
+
+@media screen and (max-width: 720px) {
+  .checkBox {
+    width: 150px;
+  }
+
+  .checkBox:before {
+    width: 80px;
+  }
+
+  .checkBox:before {
+    left: 0px;
+  }
 
   .checkBox:after {
-    left: 280px;
+    left: 60px;
+  }
+
+  .checkBox:checked:after {
+    left: 130px;
+  }
+
+  .checkBox:checked:before {
+    left: 70px;
   }
 }

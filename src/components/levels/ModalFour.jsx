@@ -3,9 +3,7 @@ import style from "./css/LevelFour.module.css";
 import Typist from "react-typist";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-const ModalFour = (props) => {
-  const { className } = props;
-
+const ModalFour = ({ user }) => {
   const [modal, setModal] = useState(true);
 
   const toggle = () => setModal(!modal);
@@ -15,17 +13,15 @@ const ModalFour = (props) => {
       <Button color="info" onClick={toggle}>
         Instructions
       </Button>
-      <Modal
-        centered="true"
-        size="lg"
-        isOpen={modal}
-        toggle={toggle}
-        className={className}
-      >
+      <Modal centered="true" size="lg" isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Instructions</ModalHeader>
         <Typist>
           <ModalBody>
-            <p>Instructions</p>
+            <p>
+              Good day {user.pseudo}, can you set the sun please, so the world
+              can wake up? It should be easy for you since you've reached that
+              level...
+            </p>
           </ModalBody>
         </Typist>
         <ModalFooter>

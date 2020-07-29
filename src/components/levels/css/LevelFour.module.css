@@ -3,6 +3,10 @@
   background: center / cover url("../img/sunsetNature.png");
 }
 
+.modal {
+  margin-top: 2vh;
+}
+
 .switch {
   position: relative;
   width: 130px;

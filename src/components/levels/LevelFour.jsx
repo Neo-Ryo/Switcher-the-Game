@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
 import { Fade } from "react-reveal";
+import smiley from "./img/smiley-surprised-100x100.png";
 import ModalFour from "./ModalFour";
 
 export default function LevelFour() {
@@ -17,25 +18,25 @@ export default function LevelFour() {
 
   //those states are in game states
   const [switchOne, setswitchOne] = useState(false);
-  const [switchTwo, setswitchTwo] = useState(true);
-  const [switchThree, setswitchThree] = useState(false);
-  const [switchFour, setswitchFour] = useState(true);
-  const [switchFive, setswitchFive] = useState(false);
+  const [switchTwo, setswitchTwo] = useState(false);
+  const [switchThree, setswitchThree] = useState(true);
+  const [switchFour, setswitchFour] = useState(false);
+  const [switchFive, setswitchFive] = useState(true);
   const [switchSix, setswitchSix] = useState(false);
   const [switchSeven, setswitchSeven] = useState(false);
-  const [switchEight, setswitchEight] = useState(true);
+  const [switchEight, setswitchEight] = useState(false);
   const [switchNine, setswitchNine] = useState(false);
-  const [switchTen, setswitchTen] = useState(false);
-  const [switchEleven, setswitchEleven] = useState(false);
-  const [switchTwelve, setswitchTwelve] = useState(true);
-  const [switchThirteen, setswitchThirteen] = useState(false);
-  const [switchFourteen, setswitchFourteen] = useState(false);
+  const [switchTen, setswitchTen] = useState(true);
+  const [switchEleven, setswitchEleven] = useState(true);
+  const [switchTwelve, setswitchTwelve] = useState(false);
+  const [switchThirteen, setswitchThirteen] = useState(true);
+  const [switchFourteen, setswitchFourteen] = useState(true);
   const [switchFifteen, setswitchFifteen] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
   const level = sessionStorage.getItem("level");
 
-  const levelId = 3;
+  const levelId = 4;
   const uuid = sessionStorage.getItem("uuid");
   // const levelStored = localStorage.getItem("level");
 
@@ -155,22 +156,23 @@ export default function LevelFour() {
     setswitchSeven(!switchSeven);
     setswitchEight(!switchEight);
     setswitchTwelve(!switchTwelve);
+    setswitchThirteen(!switchThirteen);
   };
 
   const switchFourteenTrick = () => {
     setswitchFive(!switchFive);
-    setswitchFour(!switchFour);
     setswitchSeven(!switchSeven);
     setswitchEight(!switchEight);
     setswitchTwelve(!switchTwelve);
+    setswitchFourteen(!switchFourteen);
   };
 
   const switchFifteenTrick = () => {
-    setswitchFive(!switchFive);
     setswitchFour(!switchFour);
     setswitchSeven(!switchSeven);
     setswitchEight(!switchEight);
     setswitchTwelve(!switchTwelve);
+    setswitchFifteen(!switchFifteen);
   };
 
   if (
@@ -185,7 +187,10 @@ export default function LevelFour() {
     switchNine &&
     switchTen &&
     switchEleven &&
-    switchTwelve
+    switchTwelve &&
+    switchThirteen &&
+    switchFourteen &&
+    switchFifteen
   ) {
     setTimeout(() => {
       setisSolved(true);
@@ -207,7 +212,8 @@ export default function LevelFour() {
           </Fade>
         ) : (
           <Fade>
-            <h1 style={{ marginTop: "40vh" }}>CONGRATULATION!</h1>
+            <h1 style={{ marginTop: "40vh" }}>WOOOOW! FANTASTIC! </h1>
+            <img src={smiley} alt="smiley" />
             <h3>Lights are out!</h3>
             <Button color="success" onClick={() => goLevelUp()}>
               Back to dashboard
@@ -234,12 +240,12 @@ export default function LevelFour() {
       </Row>
       <Row>
         <Col>
-          <ModalFour />
+          <ModalFour user={user} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <h1 style={{ color: "black" }}>Level 3</h1>
+          <h1 style={{ color: "black" }}>Level 4</h1>
         </Col>
       </Row>
       <Row className={style.switchDiv}>
@@ -320,9 +326,6 @@ export default function LevelFour() {
               className={style.switch}
             />
           </Col>
-        </Col>
-        {/* Col 3 */}
-        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
               checked={switchTen}
@@ -331,6 +334,9 @@ export default function LevelFour() {
               className={style.switch}
             />
           </Col>
+        </Col>
+        {/* Col 3 */}
+        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
               checked={switchEleven}
@@ -349,24 +355,24 @@ export default function LevelFour() {
           </Col>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
+              checked={switchThirteen}
+              onChange={switchThirteenTrick}
+              type="checkbox"
+              className={style.switch}
+            />
+          </Col>
+          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
+            <input
+              checked={switchFourteen}
+              onChange={switchFourteenTrick}
+              type="checkbox"
+              className={style.switch}
+            />
+          </Col>
+          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
+            <input
               checked={switchFifteen}
               onChange={switchFifteenTrick}
-              type="checkbox"
-              className={style.switch}
-            />
-          </Col>
-          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
-            <input
-              checked={switchEight}
-              onChange={switchEightTrick}
-              type="checkbox"
-              className={style.switch}
-            />
-          </Col>
-          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
-            <input
-              checked={switchFour}
-              onChange={switchFourTrick}
               type="checkbox"
               className={style.switch}
             />

@@ -26,8 +26,9 @@ const ModalTwo = (props) => {
         <Typist>
           <ModalBody>
             <p>
-              All of this light is kinda dazzling, turn all of the switches OFF!
-              (position off is the left one)
+              All of this light is kinda dazzling, turn all of the switches OFF!{" "}
+              <br />
+              The "OFF" position is the left one.
             </p>
           </ModalBody>
         </Typist>
