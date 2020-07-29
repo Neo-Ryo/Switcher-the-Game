@@ -28,6 +28,9 @@ export default function LevelFour() {
   const [switchTen, setswitchTen] = useState(false);
   const [switchEleven, setswitchEleven] = useState(false);
   const [switchTwelve, setswitchTwelve] = useState(true);
+  const [switchThirteen, setswitchThirteen] = useState(false);
+  const [switchFourteen, setswitchFourteen] = useState(false);
+  const [switchFifteen, setswitchFifteen] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
   const level = sessionStorage.getItem("level");
@@ -146,6 +149,30 @@ export default function LevelFour() {
     setswitchTwelve(!switchTwelve);
   };
 
+  const switchThirteenTrick = () => {
+    setswitchFive(!switchFive);
+    setswitchFour(!switchFour);
+    setswitchSeven(!switchSeven);
+    setswitchEight(!switchEight);
+    setswitchTwelve(!switchTwelve);
+  };
+
+  const switchFourteenTrick = () => {
+    setswitchFive(!switchFive);
+    setswitchFour(!switchFour);
+    setswitchSeven(!switchSeven);
+    setswitchEight(!switchEight);
+    setswitchTwelve(!switchTwelve);
+  };
+
+  const switchFifteenTrick = () => {
+    setswitchFive(!switchFive);
+    setswitchFour(!switchFour);
+    setswitchSeven(!switchSeven);
+    setswitchEight(!switchEight);
+    setswitchTwelve(!switchTwelve);
+  };
+
   if (
     switchOne &&
     switchTwo &&
@@ -216,6 +243,7 @@ export default function LevelFour() {
         </Col>
       </Row>
       <Row className={style.switchDiv}>
+        {/* Col one */}
         <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
@@ -249,8 +277,6 @@ export default function LevelFour() {
               className={style.switch}
             />
           </Col>
-        </Col>
-        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
               checked={switchFive}
@@ -259,6 +285,9 @@ export default function LevelFour() {
               className={style.switch}
             />
           </Col>
+        </Col>
+        {/* Col 2 */}
+        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
               checked={switchSix}
@@ -283,8 +312,6 @@ export default function LevelFour() {
               className={style.switch}
             />
           </Col>
-        </Col>
-        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
               checked={switchNine}
@@ -293,6 +320,9 @@ export default function LevelFour() {
               className={style.switch}
             />
           </Col>
+        </Col>
+        {/* Col 3 */}
+        <Col lg={{ size: 4 }} md={{ size: 4 }} sm={{ size: 4 }}>
           <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
             <input
               checked={switchTen}
@@ -313,6 +343,30 @@ export default function LevelFour() {
             <input
               checked={switchTwelve}
               onChange={switchTwelveTrick}
+              type="checkbox"
+              className={style.switch}
+            />
+          </Col>
+          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
+            <input
+              checked={switchFifteen}
+              onChange={switchFifteenTrick}
+              type="checkbox"
+              className={style.switch}
+            />
+          </Col>
+          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
+            <input
+              checked={switchEight}
+              onChange={switchEightTrick}
+              type="checkbox"
+              className={style.switch}
+            />
+          </Col>
+          <Col style={{ marginTop: "5vh", marginBottom: "5vh" }}>
+            <input
+              checked={switchFour}
+              onChange={switchFourTrick}
               type="checkbox"
               className={style.switch}
             />

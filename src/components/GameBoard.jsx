@@ -68,7 +68,7 @@ export default function GameBoard() {
         {lvl.map((i) => (
           <Col xs="12" sm="6" lg="3" style={{ marginTop: "5vh" }}>
             <LevelCard
-              key={i.id}
+              key={i}
               level={i.id}
               description={i.description}
               id={i.id}

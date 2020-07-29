@@ -1,3 +1,8 @@
+.wrapper {
+  height: 100vh;
+  background: center / cover url("../img/sunsetNature.png");
+}
+
 .switch {
   position: relative;
   width: 130px;
