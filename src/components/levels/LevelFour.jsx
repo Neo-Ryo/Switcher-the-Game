@@ -86,7 +86,7 @@ export default function LevelFour() {
 
   const switchFourTrick = () => {
     setswitchFour(!switchFour);
-    setswitchNine(!switchNine);
+    setswitchSix(!switchSix);
   };
 
   const switchFiveTrick = () => {
@@ -96,32 +96,29 @@ export default function LevelFour() {
 
   const switchSixTrick = () => {
     setswitchSix(!switchSix);
-    setswitchTen(!switchTen);
+    setswitchSeven(!switchSeven);
+    setswitchEight(!switchEight);
   };
 
   const switchSevenTrick = () => {
-    setswitchOne(!switchOne);
-    setswitchFour(!switchFour);
     setswitchSeven(!switchSeven);
+    setswitchFourteen(!switchFourteen);
   };
 
   const switchEightTrick = () => {
     setswitchEight(!switchEight);
+    setswitchSeven(!switchSeven);
   };
 
   const switchNineTrick = () => {
     setswitchOne(!switchOne);
-    setswitchTwo(!switchTwo);
     setswitchThree(!switchThree);
-    setswitchFour(!switchFour);
     setswitchFive(!switchFive);
-    setswitchSix(!switchSix);
     setswitchSeven(!switchSeven);
-    setswitchEight(!switchEight);
     setswitchNine(!switchNine);
-    setswitchTen(!switchTen);
     setswitchEleven(!switchEleven);
-    setswitchTwelve(!switchTwelve);
+    setswitchThirteen(!switchThirteen);
+    setswitchFifteen(!switchFifteen);
   };
 
   const switchTenTrick = () => {
