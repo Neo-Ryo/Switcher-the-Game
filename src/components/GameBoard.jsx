@@ -51,8 +51,14 @@ export default function GameBoard() {
           <Card>
             <CardImg top src={user.picture} alt="Card image cap" />
             <CardBody>
-              <CardTitle>{user.pseudo}</CardTitle>
-              <CardSubtitle>Level: {user.level}</CardSubtitle>
+              <CardTitle
+                style={{ color: "orange", fontSize: "30px", fontWeight: 700 }}
+              >
+                {user.pseudo}
+              </CardTitle>
+              <CardSubtitle style={{ color: "orange", fontSize: "30px" }}>
+                Level: {user.level === 6 ? "MASTER" : user.level}
+              </CardSubtitle>
             </CardBody>
           </Card>
         </Col>
@@ -65,8 +71,9 @@ export default function GameBoard() {
         </Col>
       </Row>
       <Row>
+        <Col></Col>
         {lvl.map((i) => (
-          <Col xs="12" sm="6" lg="3" style={{ marginTop: "5vh" }}>
+          <Col xs="12" sm="6" lg="2" style={{ marginTop: "5vh" }}>
             <LevelCard
               key={i}
               level={i.id}
@@ -77,6 +84,7 @@ export default function GameBoard() {
             />
           </Col>
         ))}
+        <Col></Col>
       </Row>
     </Container>
   );

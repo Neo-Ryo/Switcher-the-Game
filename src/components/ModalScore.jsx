@@ -29,7 +29,7 @@ const ModalScore = ({ users }) => {
 
   return (
     <div>
-      <Button color="warning" onClick={toggle}>
+      <Button outline color="warning" onClick={toggle}>
         <GrScorecard /> Scores
       </Button>
       <Modal isOpen={modal} toggle={toggle}>

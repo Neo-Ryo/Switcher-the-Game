@@ -8,7 +8,7 @@ const LevelCard = ({ level, description, id, isUnlock, color }) => {
       <CardTitle>{level}</CardTitle>
       <CardText>{description}</CardText>
       <Link to={`levels/${id}`}>
-        <Button color={color} disabled={isUnlock}>
+        <Button outline color={color} disabled={isUnlock}>
           Go !
         </Button>
       </Link>
