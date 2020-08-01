@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
 import { Fade } from "react-reveal";
-import smiley from "./img/smiley-surprised-100x100.png";
+import smileyFck from "./img/fckingShocked.png";
 import ModalFive from "./ModalFive";
 
 export default function LevelFive() {
@@ -40,7 +40,7 @@ export default function LevelFive() {
   const dispatch = useDispatch();
   const level = sessionStorage.getItem("level");
 
-  const levelId = 4;
+  const levelId = 5;
   const uuid = sessionStorage.getItem("uuid");
   // const levelStored = localStorage.getItem("level");
 
@@ -81,15 +81,13 @@ export default function LevelFive() {
   };
 
   const switchThreeTrick = () => {
-    setswitchOne(!switchOne);
     setswitchThree(!switchThree);
-    setswitchFour(!switchFour);
-    setswitchEight(!switchEight);
+    setswitchEighteen(!switchEighteen);
   };
 
   const switchFourTrick = () => {
     setswitchFour(!switchFour);
-    setswitchSix(!switchSix);
+    setswitchFifteen(!switchFifteen);
   };
 
   const switchFiveTrick = () => {
@@ -128,7 +126,6 @@ export default function LevelFive() {
 
   const switchTenTrick = () => {
     setswitchThree(!switchThree);
-    setswitchFive(!switchFive);
     setswitchEight(!switchEight);
     setswitchTen(!switchTen);
     setswitchEleven(!switchEleven);
@@ -145,7 +142,6 @@ export default function LevelFive() {
   const switchTwelveTrick = () => {
     setswitchFive(!switchFive);
     setswitchSeven(!switchSeven);
-    setswitchEight(!switchEight);
     setswitchTwelve(!switchTwelve);
   };
 
@@ -159,7 +155,6 @@ export default function LevelFive() {
   const switchFourteenTrick = () => {
     setswitchThree(!switchThree);
     setswitchFive(!switchFive);
-    setswitchTwelve(!switchTwelve);
     setswitchFourteen(!switchFourteen);
   };
 
@@ -170,8 +165,8 @@ export default function LevelFive() {
   };
 
   const switchSixteenTrick = () => {
+    setswitchOne(!switchOne);
     setswitchSeven(!switchSeven);
-    setswitchFourteen(!switchFourteen);
     setswitchSixteen(!switchSixteen);
   };
 
@@ -200,7 +195,10 @@ export default function LevelFive() {
     switchTwelve &&
     switchThirteen &&
     switchFourteen &&
-    switchFifteen
+    switchFifteen &&
+    switchSixteen &&
+    switchSeventeen &&
+    switchEighteen
   ) {
     setTimeout(() => {
       setisSolved(true);
@@ -222,9 +220,13 @@ export default function LevelFive() {
           </Fade>
         ) : (
           <Fade>
-            <h1 style={{ marginTop: "40vh" }}>WOOOOW! FANTASTIC! </h1>
-            <img src={smiley} alt="smiley" />
-            <h3>Lights are out!</h3>
+            <h1 style={{ marginTop: "40vh" }}>
+              You are the Switcher! No doubt about it!!!{" "}
+            </h1>
+            <img src={smileyFck} alt="smiley" />
+            <img src={smileyFck} alt="smiley" />
+            <img src={smileyFck} alt="smiley" />
+            <h3>NeoCity is shining!</h3>
             <Button color="success" onClick={() => goLevelUp()}>
               Back to dashboard
             </Button>
