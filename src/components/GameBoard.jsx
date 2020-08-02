@@ -16,6 +16,7 @@ import style from "../css/GameBoard.module.css";
 import lvl from "./levels.json";
 import Axios from "axios";
 import { url } from "../urls";
+import Credits from "./Credits";
 
 export default function GameBoard() {
   const [user, setUser] = useState({});
@@ -85,6 +86,15 @@ export default function GameBoard() {
           </Col>
         ))}
         <Col></Col>
+      </Row>
+      <Row>
+        {user.level >= 6 ? (
+          <Col style={{ marginTop: "5vh" }}>
+            <Credits />
+          </Col>
+        ) : (
+          ""
+        )}
       </Row>
     </Container>
   );
