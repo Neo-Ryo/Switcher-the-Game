@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const LevelCard = ({ level, description, id, isUnlock, color }) => {
   return (
     <Card body>
-      <CardTitle>{level}</CardTitle>
+      <CardTitle>stage {level}</CardTitle>
       <CardText>{description}</CardText>
       <Link to={`levels/${id}`}>
-        <Button color={color} disabled={isUnlock}>
+        <Button outline color={color} disabled={isUnlock}>
           Go !
         </Button>
       </Link>
