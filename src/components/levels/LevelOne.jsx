@@ -43,7 +43,7 @@ export default function LevelOne() {
 
   const goLevelUp = async () => {
     try {
-      await dispatch(levelUp());
+      dispatch(levelUp());
       getUser();
       history.push("/game-board");
     } catch (error) {
