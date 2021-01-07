@@ -31,7 +31,7 @@ const Login = () => {
   const submitLogs = async (data) => {
     try {
       setIsLoading(true);
-      await dispatch(login({ ...data }));
+      dispatch(login({ ...data }));
     } catch (error) {
       console.log(error);
     } finally {
@@ -54,9 +54,12 @@ const Login = () => {
         password,
         picture: resImgur.data.data.link,
       });
+      const uuidLevel = await axios.post(`${url}/levels/${uuid}`)
       sessionStorage.setItem("uuid", uuid);
+      sessionStorage.setItem("level", uuidLevel.data.data.name)
+      console.log("level data: ", uuidLevel.data.data.name);
     } catch (error) {
-      toast.error("I must fill every fields and select an picture...");
+      toast.error("You must fill every fields and select an picture...");
     } finally {
       setIsLoading(false);
     }

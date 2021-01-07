@@ -31,7 +31,7 @@ export default function GameBoard() {
       const resUsers = await Axios.get(`${url}/users`);
       setUser(resUser.data);
       setUsers(resUsers.data);
-      sessionStorage.setItem("level", resUser.data.level);
+      sessionStorage.setItem("level", resUser.data.Level.name);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -58,7 +58,7 @@ export default function GameBoard() {
                 {user.pseudo}
               </CardTitle>
               <CardSubtitle style={{ color: "orange", fontSize: "30px" }}>
-                Level: {user.level === 6 ? "MASTER" : user.level}
+                Level: {user.Level.name === 6 ? "MASTER" : user.Level.name}
               </CardSubtitle>
             </CardBody>
           </Card>
@@ -80,15 +80,15 @@ export default function GameBoard() {
               level={i.id}
               description={i.description}
               id={i.id}
-              isUnlock={i.id <= user.level ? false : true}
-              color={i.id <= user.level ? "success" : "danger"}
+              isUnlock={i.id <= user.Level.name ? false : true}
+              color={i.id <= user.Level.name ? "success" : "danger"}
             />
           </Col>
         ))}
         <Col></Col>
       </Row>
       <Row>
-        {user.level >= 6 ? (
+        {user.Level.name >= 6 ? (
           <Col style={{ marginTop: "5vh" }}>
             <Credits />
           </Col>
