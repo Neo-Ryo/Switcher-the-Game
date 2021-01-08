@@ -3,7 +3,7 @@ import style from "../levels/css/LevelOne.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Spinner } from "reactstrap";
 import Axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { url } from "../../urls";
 import { levelUp } from "../store/actionCreators";
 import ModalOne from "./ModalOne";
@@ -24,12 +24,17 @@ export default function LevelOne() {
 
   const levelId = 1;
   const uuid = sessionStorage.getItem("uuid");
+  const token = useSelector((state) => state.user.token)
   // const levelStored = localStorage.getItem("level");
 
   const getUser = async () => {
     try {
       setIsLoading(true);
-      const res = await Axios.get(`${url}/users/${uuid}`);
+      const res = await Axios.get(`${url}/users/${uuid}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setUser(res.data);
       setIsLoading(false);
     } catch (error) {
@@ -43,7 +48,7 @@ export default function LevelOne() {
 
   const goLevelUp = async () => {
     try {
-      dispatch(levelUp());
+      dispatch(levelUp(token));
       getUser();
       history.push("/game-board");
     } catch (error) {

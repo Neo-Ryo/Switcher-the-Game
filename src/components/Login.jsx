@@ -32,6 +32,7 @@ const Login = () => {
     try {
       setIsLoading(true);
       dispatch(login({ ...data }));
+      history.push("/game-board")
     } catch (error) {
       console.log(error);
     } finally {
@@ -65,11 +66,11 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    if (uuid) {
-      history.push("/game-board");
-    }
-  }, [uuid, history]);
+  // useEffect(() => {
+  //   if (uuid) {
+  //     history.push("/game-board");
+  //   }
+  // }, [uuid, history]);
 
   if (toggleRegister) {
     return (
