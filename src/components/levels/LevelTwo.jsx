@@ -31,15 +31,17 @@ export default function LevelTwo() {
 
     const levelId = 2
     const uuid = sessionStorage.getItem('uuid')
-    const token = useSelector((state) => state.user.token)
+    const token = sessionStorage.getItem('token')
+    const tokenState = useSelector((state) => state.user.token)
+    const uuidState = useSelector((state) => state.user.uuid)
     // const levelStored = localStorage.getItem("level");
 
     const getUser = async () => {
         try {
             setIsLoading(true)
-            const res = await Axios.get(`${url}/users/${uuid}`, {
+            const res = await Axios.get(`${url}/users/${uuidState ?? uuid}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${tokenState ?? token}`,
                 },
             })
             setUser(res.data)
@@ -55,9 +57,8 @@ export default function LevelTwo() {
 
     const goLevelUp = async () => {
         try {
-            dispatch(levelUp(token))
+            dispatch(levelUp(history))
             getUser()
-            history.push('/game-board')
         } catch (error) {
             console.log(error)
         }

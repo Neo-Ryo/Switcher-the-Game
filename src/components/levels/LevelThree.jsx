@@ -3,7 +3,7 @@ import style from './css/LevelThree.module.css'
 import { Link, useHistory } from 'react-router-dom'
 import { Button, Spinner, Container, Row, Col } from 'reactstrap'
 import Axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { url } from '../../urls'
 import { levelUp } from '../store/actionCreators'
 import { Fade } from 'react-reveal'
@@ -35,14 +35,16 @@ export default function LevelThree() {
     const levelId = 3
     const uuid = sessionStorage.getItem('uuid')
     const token = sessionStorage.getItem('token')
+    const tokenState = useSelector((state) => state.user.token)
+    const uuidState = useSelector((state) => state.user.uuid)
     // const levelStored = localStorage.getItem("level");
 
     const getUser = async () => {
         try {
             setIsLoading(true)
-            const res = await Axios.get(`${url}/users/${uuid}`, {
+            const res = await Axios.get(`${url}/users/${uuidState ?? uuid}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${tokenState ?? token}`,
                 },
             })
             setUser(res.data)
@@ -58,9 +60,8 @@ export default function LevelThree() {
 
     const goLevelUp = async () => {
         try {
-            await dispatch(levelUp(token))
+            dispatch(levelUp(history))
             getUser()
-            history.push('/game-board')
         } catch (error) {
             console.log(error)
         }

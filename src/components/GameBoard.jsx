@@ -51,7 +51,6 @@ export default function GameBoard() {
 
     useEffect(() => {
         getAllInfos()
-        console.log(tokenState, uuidState)
     }, [uuid])
 
     if (isLoading) {

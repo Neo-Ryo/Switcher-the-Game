@@ -355,7 +355,7 @@ const Login = () => {
                                     {isLoading ? (
                                         <Spinner size="sm" />
                                     ) : (
-                                        'LOGIN'
+                                        'SIGNIN'
                                     )}
                                 </Button>
                             </form>

@@ -53,16 +53,31 @@ export const signin = ({ pseudo, password, pic }, history) => async (
     }
 }
 
-export const levelUp = (token) => async (dispatch) => {
+export const levelUp = (history) => async (dispatch) => {
     try {
         const uuid = sessionStorage.getItem('uuid')
-        const res = await axios.put(`${url}/levels/${uuid}/levelUp`, {
+        const token = sessionStorage.getItem('token')
+        await axios.put(
+            `${url}/levels/${uuid}/levelUp`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        const {
+            data: {
+                Level: { name },
+            },
+        } = await axios.get(`${url}/users/${uuid}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         })
-        dispatch({ type: LEVELUP, payload: res.data.name })
-        sessionStorage.setItem('level', res.data.name)
+        dispatch({ type: LEVELUP, payload: name })
+        sessionStorage.setItem('level', name)
+        history.push('/game-board')
     } catch (error) {
         toast.error(
             'Something went wrong... Level up did not work, you might have to do it again'
