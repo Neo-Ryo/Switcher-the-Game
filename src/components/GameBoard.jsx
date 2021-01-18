@@ -27,23 +27,22 @@ export default function GameBoard() {
     const [users, setUsers] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const uuid = sessionStorage.getItem('uuid')
-    const token = useSelector((state) => state.user.token)
+    const token = sessionStorage.getItem('token')
+    const uuidState = useSelector((state) => state.user.uuid)
+    const tokenState = useSelector((state) => state.user.token)
 
     const getAllInfos = async () => {
         try {
             setIsLoading(true)
-            console.log(token)
+            console.log('token: ', token)
             const resUser = await Axios.get(`${url}/users/${uuid}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             })
             const resUsers = await Axios.get(`${url}/users`)
-            const useLevel = resUser.data.Level.name
-            dispatch(level({ useLevel }))
             setUser(resUser.data)
             setUsers(resUsers.data)
-            sessionStorage.setItem('level', resUser.data.Level.name)
             setIsLoading(false)
         } catch (error) {
             console.log(error)
@@ -52,6 +51,7 @@ export default function GameBoard() {
 
     useEffect(() => {
         getAllInfos()
+        console.log(tokenState, uuidState)
     }, [uuid])
 
     if (isLoading) {

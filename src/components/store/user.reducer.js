@@ -15,20 +15,21 @@ const user = (state = initialeState, action) => {
                 ...state,
                 uuid: payload.uuid,
                 token: payload.token,
-                level: payload.level,
+                level: payload.name,
             }
         case LOGIN:
             return {
                 ...state,
                 uuid: payload.uuid,
                 token: payload.token,
-                level: payload.name,
+                level: payload.level,
             }
         case SIGNIN:
             return {
                 ...state,
                 uuid: payload.uuid,
-                level: payload.Level.name,
+                token: payload.token,
+                level: payload.name,
             }
         case LEVELUP:
             return {
