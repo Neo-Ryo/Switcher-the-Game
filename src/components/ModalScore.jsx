@@ -17,15 +17,15 @@ const ModalScore = ({ users }) => {
   const nbrUsers = users.length;
 
   const lvl1 =
-    (users.filter((user) => user.level >= 2).length / nbrUsers) * 100;
+    (users.filter((user) => user.Level.name >= 2).length / nbrUsers) * 100;
   const lvl2 =
-    (users.filter((user) => user.level >= 3).length / nbrUsers) * 100;
+    (users.filter((user) => user.Level.name >= 3).length / nbrUsers) * 100;
   const lvl3 =
-    (users.filter((user) => user.level >= 4).length / nbrUsers) * 100;
+    (users.filter((user) => user.Level.name >= 4).length / nbrUsers) * 100;
   const lvl4 =
-    (users.filter((user) => user.level >= 5).length / nbrUsers) * 100;
+    (users.filter((user) => user.Level.name >= 5).length / nbrUsers) * 100;
   const lvl5 =
-    (users.filter((user) => user.level >= 6).length / nbrUsers) * 100;
+    (users.filter((user) => user.Level.name >= 6).length / nbrUsers) * 100;
 
   return (
     <div>

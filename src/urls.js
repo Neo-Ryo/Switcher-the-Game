@@ -1,2 +1,2 @@
 // export const url = "http://localhost:8000";
-export const url = "https://switcher-fr-api.herokuapp.com";
+export const url = 'https://switcher-fr-api.herokuapp.com'
