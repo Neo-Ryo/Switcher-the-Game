@@ -48,7 +48,6 @@ const Login = () => {
                 { headers: { Authorization: `Client-ID ${imgurClient}` } }
             )
             const pic = resImgur.data.data.link
-            console.log('PICTURE: ', pic)
             dispatch(signin({ ...data, pic }, history))
         } catch (error) {
             console.log(error)
