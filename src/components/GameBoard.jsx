@@ -34,7 +34,6 @@ export default function GameBoard() {
     const getAllInfos = async () => {
         try {
             setIsLoading(true)
-            console.log('token: ', token)
             const resUser = await Axios.get(`${url}/users/${uuid}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -93,10 +92,16 @@ export default function GameBoard() {
             </Row>
             <Row>
                 <Col></Col>
-                {lvl.map((i) => (
-                    <Col xs="12" sm="6" lg="2" style={{ marginTop: '5vh' }}>
+                {lvl.map((i, key1, key) => (
+                    <Col
+                        key={key1}
+                        xs="12"
+                        sm="6"
+                        lg="2"
+                        style={{ marginTop: '5vh' }}
+                    >
                         <LevelCard
-                            key={i}
+                            key={key}
                             level={i.id}
                             description={i.description}
                             id={i.id}
