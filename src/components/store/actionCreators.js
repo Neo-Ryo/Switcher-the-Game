@@ -16,8 +16,7 @@ export const login = ({ pseudo, password }, history) => async (dispatch) => {
         toast.success(`Welcome back ${pseudo}`)
         history.push('/game-board')
     } catch (error) {
-        console.log('dispatch login: ', error)
-        toast.error('Something went wrong..., Login is incorrect')
+        toast.error('Your logs are incorrect')
     }
 }
 
@@ -49,7 +48,7 @@ export const signin = ({ pseudo, password, pic }, history) => async (
         toast.success(`Welcome ${pseudo}`)
         history.push('/game-board')
     } catch (error) {
-        toast.error("Something went wrong... Your sign in action didn't work")
+        toast.error(`You must try again: ${pseudo} is already taken`)
     }
 }
 
