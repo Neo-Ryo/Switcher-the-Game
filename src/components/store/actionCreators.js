@@ -31,20 +31,17 @@ export const signin = ({ pseudo, password, pic }, history) => async (
 ) => {
     try {
         const {
-            data: { uuid, token },
+            data: { uuid, level, token },
         } = await axios.post(`${url}/users`, {
             pseudo,
             password,
             picture: pic,
         })
-        const {
-            data: { name },
-        } = await axios.post(`${url}/levels/${uuid}`)
-        dispatch({ type: SIGNIN, payload: { uuid, token, name } })
+        dispatch({ type: SIGNIN, payload: { uuid, level, token } })
         sessionStorage.setItem('uuid', uuid)
         sessionStorage.setItem('token', token)
-        sessionStorage.setItem('level', name)
-        console.log('level data: ', name)
+        sessionStorage.setItem('level', level)
+        console.log('level data: ', level)
         toast.success(`Welcome ${pseudo}`)
         history.push('/game-board')
     } catch (error) {

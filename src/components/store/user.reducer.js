@@ -28,8 +28,8 @@ const user = (state = initialeState, action) => {
             return {
                 ...state,
                 uuid: payload.uuid,
-                token: payload.token,
                 level: payload.name,
+                token: payload.token,
             }
         case LEVELUP:
             return {

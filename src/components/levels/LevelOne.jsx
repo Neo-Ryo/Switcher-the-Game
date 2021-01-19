@@ -26,16 +26,14 @@ export default function LevelOne() {
     const levelId = 1
     const uuid = sessionStorage.getItem('uuid')
     const token = sessionStorage.getItem('token')
-    const tokenState = useSelector((state) => state.user.token)
-    const uuidState = useSelector((state) => state.user.uuid)
     // const levelStored = localStorage.getItem("level");
 
     const getUser = async () => {
         try {
             setIsLoading(true)
-            const res = await Axios.get(`${url}/users/${uuidState ?? uuid}`, {
+            const res = await Axios.get(`${url}/users/${uuid}`, {
                 headers: {
-                    Authorization: `Bearer ${tokenState ?? token}`,
+                    Authorization: `Bearer ${token}`,
                 },
             })
             setUser(res.data)

@@ -34,14 +34,11 @@ export default function GameBoard() {
     const getAllInfos = async () => {
         try {
             setIsLoading(true)
-            const resUser = await Axios.get(
-                `${url}/users/${uuidState ?? uuid}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${tokenState ?? token}`,
-                    },
-                }
-            )
+            const resUser = await Axios.get(`${url}/users/${uuid}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             const resUsers = await Axios.get(`${url}/users`)
             setUser(resUser.data)
             setUsers(resUsers.data)
