@@ -3,7 +3,7 @@ import style from './css/LevelFive.module.scss'
 import { Link, useHistory } from 'react-router-dom'
 import { Button, Spinner, Container, Row, Col } from 'reactstrap'
 import Axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { url } from '../../urls'
 import { levelUp } from '../store/actionCreators'
 import { Fade } from 'react-reveal'
@@ -17,18 +17,18 @@ export default function LevelFive() {
     const [isSolved, setisSolved] = useState(false)
 
     //those states are in game states
-    const [switchOne, setswitchOne] = useState(false)
-    const [switchTwo, setswitchTwo] = useState(false)
+    const [switchOne, setswitchOne] = useState(true)
+    const [switchTwo, setswitchTwo] = useState(true)
     const [switchThree, setswitchThree] = useState(true)
-    const [switchFour, setswitchFour] = useState(false)
+    const [switchFour, setswitchFour] = useState(true)
     const [switchFive, setswitchFive] = useState(true)
-    const [switchSix, setswitchSix] = useState(false)
-    const [switchSeven, setswitchSeven] = useState(false)
-    const [switchEight, setswitchEight] = useState(false)
-    const [switchNine, setswitchNine] = useState(false)
+    const [switchSix, setswitchSix] = useState(true)
+    const [switchSeven, setswitchSeven] = useState(true)
+    const [switchEight, setswitchEight] = useState(true)
+    const [switchNine, setswitchNine] = useState(true)
     const [switchTen, setswitchTen] = useState(true)
     const [switchEleven, setswitchEleven] = useState(true)
-    const [switchTwelve, setswitchTwelve] = useState(false)
+    const [switchTwelve, setswitchTwelve] = useState(true)
     const [switchThirteen, setswitchThirteen] = useState(true)
     const [switchFourteen, setswitchFourteen] = useState(true)
     const [switchFifteen, setswitchFifteen] = useState(true)

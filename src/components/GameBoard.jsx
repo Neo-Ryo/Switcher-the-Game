@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {
-    Row,
-    Col,
-    Card,
-    CardImg,
-    CardBody,
-    CardTitle,
-    Spinner,
-    CardSubtitle,
-    Container,
-} from 'reactstrap'
+import { Row, Col, Spinner, Container } from 'reactstrap'
+import PlayerCard from './PlayerCard'
 import LevelCard from './LevelCard'
 import ModalScore from './ModalScore'
 import style from '../css/GameBoard.module.css'
@@ -17,19 +8,13 @@ import lvl from './levels.json'
 import Axios from 'axios'
 import { url } from '../urls'
 import Credits from './Credits'
-import { useDispatch, useSelector } from 'react-redux'
-import { level } from './store/actionCreators'
 
 export default function GameBoard() {
-    const dispatch = useDispatch()
-
     const [user, setUser] = useState({})
     const [users, setUsers] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const uuid = sessionStorage.getItem('uuid')
     const token = sessionStorage.getItem('token')
-    const uuidState = useSelector((state) => state.user.uuid)
-    const tokenState = useSelector((state) => state.user.token)
 
     const getAllInfos = async () => {
         try {
@@ -58,30 +43,7 @@ export default function GameBoard() {
     return (
         <Container fluid className={style.wrapper}>
             <Row>
-                <Col lg={{ size: 2 }} md={{ size: 4 }}>
-                    <Card>
-                        <CardImg top src={user.picture} alt="Card image cap" />
-                        <CardBody>
-                            <CardTitle
-                                style={{
-                                    color: 'orange',
-                                    fontSize: '30px',
-                                    fontWeight: 700,
-                                }}
-                            >
-                                {user.pseudo}
-                            </CardTitle>
-                            <CardSubtitle
-                                style={{ color: 'orange', fontSize: '30px' }}
-                            >
-                                Level:{' '}
-                                {user.Level.name === 6
-                                    ? 'MASTER'
-                                    : user.Level.name}
-                            </CardSubtitle>
-                        </CardBody>
-                    </Card>
-                </Col>
+                <PlayerCard user={user} />
                 <Col lg={{ size: 8 }} md={{ size: 4 }}>
                     <h1 style={{ color: 'orange' }}>Welcome!</h1>
                     <h3 style={{ color: 'orange' }}> Select a level</h3>
